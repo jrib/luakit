@@ -1,6 +1,6 @@
 -- Global variables for luakit
 globals = {
-    homepage            = "http://luakit.org/",
+    homepage            = "http://google.com",
  -- homepage            = "http://github.com/mason-larobina/luakit",
     scroll_step         = 40,
     zoom_step           = 0.1,
@@ -51,13 +51,12 @@ soup.accept_policy = cookie_policy.always
 -- it to avoid collisions with lua's string.format characters.
 -- See: http://www.lua.org/manual/5.1/manual.html#pdf-string.format
 search_engines = {
-    luakit      = "http://luakit.org/search/index/luakit?q=%s",
-    google      = "http://google.com/search?q=%s",
-    duckduckgo  = "http://duckduckgo.com/?q=%s",
-    wikipedia   = "http://en.wikipedia.org/wiki/Special:Search?search=%s",
+    l      = "http://luakit.org/search/index/luakit?q=%s",
+    g      = "http://google.com/search?q=%s",
+    d  = "http://duckduckgo.com/?q=%s",
+    w   = "http://en.wikipedia.org/wiki/Special:Search?search=%s",
     debbugs     = "http://bugs.debian.org/%s",
     imdb        = "http://imdb.com/find?s=all&q=%s",
-    sourceforge = "http://sf.net/search/?words=%s",
 }
 
 -- Set google as fallback search engine
@@ -67,7 +66,12 @@ search_engines.default = search_engines.google
 
 -- Per-domain webview properties
 -- See http://webkitgtk.org/reference/webkitgtk-WebKitWebSettings.html
-domain_props = { --[[
+domain_props = { 
+    ["all"] = {
+        ["user-stylesheet-uri"]     = "file://" .. luakit.data_dir .. "/styles/default.css",
+        ["enable-spell-checking"] = true,
+    },
+--[[
     ["all"] = {
         enable_scripts          = false,
         enable_plugins          = false,
